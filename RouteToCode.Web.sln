@@ -5,13 +5,13 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteToCode.Domain", "RouteToCode.Domain\RouteToCode.Domain.csproj", "{C1A4AF7F-13F3-4190-AC2D-1CDB054BEC37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteToCode.Infrastructure", "RouteToCode.Infrastructure\RouteToCode.Infrastructure.csproj", "{C76AB482-14CF-4403-8742-4710F1E9E78B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteToCode.Infrastructure", "RouteToCode.Infrastructure\RouteToCode.Infrastructure.csproj", "{C76AB482-14CF-4403-8742-4710F1E9E78B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteToCode.Application", "RouteToCode.Application\RouteToCode.Application.csproj", "{9C399B12-95BE-4A7B-BC2A-5A9193575C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteToCode.Application", "RouteToCode.Application\RouteToCode.Application.csproj", "{9C399B12-95BE-4A7B-BC2A-5A9193575C31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteToCode.loc", "RouteToCode.loc\RouteToCode.loc.csproj", "{C23B4069-7FF9-4887-BC26-9D33A9FFF0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteToCode.loc", "RouteToCode.loc\RouteToCode.loc.csproj", "{C23B4069-7FF9-4887-BC26-9D33A9FFF0EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteToCode.Web", "RouteToCode.Web\RouteToCode.Web.csproj", "{7A43EF2E-0816-4BB7-A57D-4E51D49A31E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteToCode.Api", "RouteToCode.Api\RouteToCode.Api.csproj", "{459728BA-490B-4279-B820-5AD9F7903FEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{C23B4069-7FF9-4887-BC26-9D33A9FFF0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C23B4069-7FF9-4887-BC26-9D33A9FFF0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C23B4069-7FF9-4887-BC26-9D33A9FFF0EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A43EF2E-0816-4BB7-A57D-4E51D49A31E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A43EF2E-0816-4BB7-A57D-4E51D49A31E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A43EF2E-0816-4BB7-A57D-4E51D49A31E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A43EF2E-0816-4BB7-A57D-4E51D49A31E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{459728BA-490B-4279-B820-5AD9F7903FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{459728BA-490B-4279-B820-5AD9F7903FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{459728BA-490B-4279-B820-5AD9F7903FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{459728BA-490B-4279-B820-5AD9F7903FEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

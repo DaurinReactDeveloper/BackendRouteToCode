@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RouteToCode.Infrastructure\RouteToCode.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
