@@ -13,6 +13,8 @@ namespace RouteToCode.Infrastructure.Interfaces
     {
         //Login
         UserModel GetUser(string Name,string Password);
+        //bool GetUser(string Name, string Password);
+
         UserModel GetUserById(int Id);
     }
 }

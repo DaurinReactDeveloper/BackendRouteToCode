@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 using RouteToCode.Application.Contract;
+using RouteToCode.Application.Dtos.Token;
 using RouteToCode.Application.Dtos.User;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,20 +27,27 @@ namespace RouteToCode.Api.Controllers
         [HttpGet("{name}/{password}")]
         public ActionResult Get(string name, string password)
         {
-
             var user = this.userServices.GetUser(name, password);
 
             if (user is null)
             {
-
-                return BadRequest(user);
-
+                return BadRequest("Usuario no encontrado");
             }
+            else
+            {
+                var userData = user.Data;
+                var token = this.userServices.GenerateToken(userData.Name, userData.Rol);
 
-            return Ok(user);
+                return Ok(new
+                {
+                    User = userData,
+                    Token = token
+                });
+            }
         }
 
         // GET api/<UserController>/5
+        [Authorize(Roles = "admin")]
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
@@ -58,12 +68,12 @@ namespace RouteToCode.Api.Controllers
         [HttpPost("Save")]
         public ActionResult Post([FromBody] UserAddDto userAddDto)
         {
-
+            
             var user = this.userServices.Save(userAddDto);
 
-            if (user is null)
+            if (user is null || user.Success == false)
             {
-                return BadRequest(userAddDto);
+                return BadRequest(user.Message);
             }
 
             return Ok();
@@ -89,6 +99,7 @@ namespace RouteToCode.Api.Controllers
         }
 
         // DELETE api/<UserController>/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("Remove")]
         public ActionResult Delete([FromBody] UserRemoveDto userRemoveDto)
         {

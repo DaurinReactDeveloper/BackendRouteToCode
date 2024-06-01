@@ -1,0 +1,189 @@
+.name_page_basic {
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+}
+
+.col_principal_básico {
+  color: white;
+  text-align: justify;
+}
+
+.col_principal_básico h5 {
+  text-decoration: underline #1d8e96;
+}
+
+.div_name_page {
+  color: white;
+  padding-top: 3vw;
+  padding-bottom: 2vw;
+}
+
+/* ACORDEONES */
+
+.accordion {
+  width: 100%;
+}
+
+.div_accordion {
+  padding-bottom: 4vw;
+}
+
+.accordion-button {
+  background-color: #1d8e96;
+  color: white;
+}
+
+.accordion-item {
+  background-color: white;
+}
+
+.accordion-button:not(.collapsed) {
+  color: white;
+  background-color: #1d8e96;
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 #333333;
+}
+
+#collapseOne {
+  padding: 1.5vw;
+}
+
+.Subtemas_Acordeones {
+  text-align: center;
+  padding-top: 0.5vw;
+  text-decoration: underline #1d8e96;
+}
+
+/* Ejemplos */
+.span_int {
+  color: #6edff6;
+}
+
+.span_nombre_variable {
+  color: chocolate;
+}
+
+.declaración_variable {
+  background-color: #333333;
+  color: white;
+  text-align: center;
+}
+
+.declaración_variable p {
+  padding: 0;
+  margin: 0;
+  padding: 2vw;
+  margin-bottom: 2vw;
+}
+
+.declaración_variable_2 {
+  background-color: #333333;
+  color: white;
+  text-align: justify;
+  width: 100%;
+  border-radius: 1vw;
+}
+
+.Botón_Copiar {
+  border: 0;
+  background-color: #1d8e96;
+  color: white;
+  width: 100%;
+  border-radius: 0.2vw;
+}
+
+/* Videos */
+.videosacordeones {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5vw;
+}
+
+/* Enlaces */
+
+.div_accordion a {
+  color: black;
+  font-weight: bold;
+}
+
+/*SUBTEMAS*/
+.h5_Subtemas {
+  text-transform: uppercase;
+}
+
+/* Display None */
+.tabla_pc {
+  display: none;
+}
+
+.lista_celulares {
+  display: inline;
+}
+
+@media (min-width: 1024px) {
+  .main_modulo_1 {
+    font-size: 1.2vw;
+  }
+
+  .csharp_icon_page {
+    display: none;
+  }
+
+  .col_principal_básico h3 {
+    text-align: justify;
+  }
+
+  #collapseOne {
+    padding: 0.5vw;
+  }
+
+  /* Ejemplos */
+  .declaración_variable p {
+    padding: 0.5vw;
+    margin-bottom: 0.5vw;
+  }
+
+  .declaración_variable_2 {
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 1vw;
+  }
+
+  .Botón_Copiar:hover {
+    color: #1d8e96;
+    background-color: white;
+    border: 0.1vw solid #333333;
+  }
+
+  /* ACORDEÓN */
+  .row_acordeón_introducción {
+    align-items: center;
+  }
+
+  .div_accordion {
+    padding-bottom: 1vw;
+  }
+
+  /* Video */
+  .videosacordeones {
+    height: 33vw;
+    border-radius: 1.5vw;
+  }
+
+  /* Display None */
+  .lista_celulares {
+    display: none;
+  }
+
+  .tabla_pc {
+    display: inline;
+  }
+}
+
+@media (min-width: 1490px) {
+  .declaración_variable_2 {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 1vw;
+  }
+}

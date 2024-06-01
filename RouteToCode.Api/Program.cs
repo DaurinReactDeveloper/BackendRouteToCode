@@ -1,10 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using RouteToCode.Application.Contract;
-using RouteToCode.Application.Services;
+using Microsoft.IdentityModel.Tokens;
 using RouteToCode.Domain.Entities;
-using RouteToCode.Infrastructure.Interfaces;
-using RouteToCode.Infrastructure.Persistence.Repositories;
 using RouteToCode.loc.Dependencies;
+using System.Text;
 
 namespace RouteToCode.Api
 {
@@ -29,7 +28,6 @@ namespace RouteToCode.Api
             builder.Services.AddDbContext<DBBLOGContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBBLOGContext")));
 
 
-
             //Configurar Core para hacer las Peticiones desde ReactJs
             var proveedor = builder.Services.BuildServiceProvider();
 
@@ -49,6 +47,26 @@ namespace RouteToCode.Api
 
             });
 
+            //Configuracion del Json Web Token
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
+            {
+
+                option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+
+            }
+            );
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -61,6 +79,8 @@ namespace RouteToCode.Api
             app.UseHttpsRedirection();
 
             app.UseCors();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

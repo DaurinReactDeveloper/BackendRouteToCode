@@ -1,0 +1,201 @@
+.row_comentarios {
+  background-color: white;
+}
+
+.row_comentario_map {
+  box-shadow: 0vw 0.1vw 0.5vw black;
+  padding: 1vw;
+  border-radius: 1.5vw;
+  margin-bottom: 5vw !important;
+}
+
+.h2_comentarios {
+  text-align: center;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  background-color: #263238;
+  color: white;
+}
+
+.img_comentarios {
+  width: 100%;
+  height: max-content;
+}
+
+.div_img_comentario {
+  padding: 0vw 1vw;
+  background-color: #1c1b1f;
+  border-radius: 50%;
+  height: min-content;
+  width: 100%;
+}
+
+.div_data_comentarios {
+  width: 100%;
+}
+
+.div_contenedor_comentario {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+}
+
+.div_botón_agregar_comentario {
+  padding-top: 5vw;
+  padding-bottom: 5vw;
+  text-align: center;
+}
+
+.botón_agregar_comentario {
+  border: none;
+  border-radius: 5vw;
+  background-color: #1d8e96;
+  color: white;
+  padding: 2vw 10vw;
+  display: flex;
+  align-items: center;
+}
+
+.p_nombre_usuario_comentario {
+  color: #263238;
+  font-weight: bold;
+  margin-bottom: 0vw;
+}
+
+.comentario {
+  text-align: justify;
+  padding-right: 2vw;
+  margin-bottom: 0vw;
+}
+
+.div_editar_eliminar_comentario {
+  display: flex;
+  justify-content: end;
+  padding-right: 1vw;
+  gap: 2vw;
+  padding-bottom: 10vw;
+}
+
+.botón_editar_comentario {
+  all: unset;
+  background-color: #1d8e96;
+  padding: 1vw 2vw;
+  border-radius: 1vw;
+  color: white;
+}
+
+.botón_delete_comentario {
+  all: unset;
+  background-color: #961d1d;
+  color: white;
+  padding: 1vw 2vw;
+  border-radius: 1vw;
+}
+
+.hr_comentarios {
+  border: 1vw solid #1d8e96;
+  margin-bottom: 0vw;
+  opacity: 1;
+}
+
+@media (min-width: 1020px) {
+  .row_comentarios {
+    margin-top: 2vw !important;
+  }
+
+  /* h2_comentarios */
+  .h2_comentarios {
+    padding: 0.5vw;
+  }
+
+  /* esta es la clase que genera el map */
+  .row_comentario_map {
+    box-shadow: 0vw 0.1vw 0.1vw rgba(0, 0, 0, 0.204);
+    padding: 1vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid #1d8e96;
+    margin-bottom: 1vw !important;
+  }
+
+  .div_contenedor_img_data {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+  }
+
+  .div_img_comentario {
+    padding: 1vw;
+    width: 10%;
+  }
+
+  /* Botón Agregar */
+  .div_botón_agregar_comentario {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+  }
+
+  .botón_agregar_comentario {
+    padding: 0.7vw 3vw;
+  }
+
+  /* Comentario del Usuario */
+  .comentario {
+    padding-right: 0vw;
+    line-height: 1.6vw;
+    width: 100%;
+  }
+
+  /* Div_editar */
+  .div_editar_eliminar_comentario {
+    gap: 1vw;
+    padding-bottom: 0vw;
+  }
+
+  .div_editar_eliminar_comentario {
+    padding-right: 0vw;
+  }
+
+  /* Iconos_Editar */
+  .botón_editar_comentario {
+    border-radius: 0.5vw;
+    color: white;
+    font-size: 1vw;
+    padding: 0.3vw 0.7vw;
+    border: none;
+  }
+
+  .botón_delete_comentario {
+    font-size: 1vw;
+    border-radius: 0.5vw;
+    padding: 0.3vw 0.7vw;
+  }
+
+  /* Hover  */
+  .botón_editar_comentario:hover {
+    background-color: #1c1b1f;
+  }
+
+  .botón_delete_comentario:hover {
+    background-color: #1c1b1f;
+  }
+
+  .botón_agregar_comentario:hover {
+    background-color: #1c1b1f;
+  }
+
+  /* HR */
+  .hr_comentarios {
+    border: 0.1vw solid #1d8e96;
+  }
+
+  .col_datos_comentarios {
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-bottom: 2vw;
+  }
+
+  .div_botón_agregar_comentario {
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+}

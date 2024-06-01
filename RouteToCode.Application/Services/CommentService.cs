@@ -70,6 +70,7 @@ namespace RouteToCode.Application.Services
                     Content = ModelDto.Content,
                     Section = ModelDto.Section,
                     UserName = ModelDto.UserName,
+                    UserId = ModelDto.UserId
                 });
 
                 result.Message = "Comentario Agregado Correctamente";

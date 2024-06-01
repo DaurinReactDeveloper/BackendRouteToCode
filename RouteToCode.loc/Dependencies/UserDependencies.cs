@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RouteToCode.Application.Contract;
 using RouteToCode.Application.Services;
+using RouteToCode.Application.Validations;
 using RouteToCode.Infrastructure.Interfaces;
 using RouteToCode.Infrastructure.Persistence.Repositories;
 using System;

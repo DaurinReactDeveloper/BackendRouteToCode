@@ -1,0 +1,184 @@
+.main_principal {
+  margin-right: 0vw;
+}
+
+.row {
+  margin: 0vw;
+}
+
+.img-fluid {
+  padding-left: 0vw;
+  padding-right: 0vw;
+}
+
+.img_módulos_csharp {
+  opacity: 70%;
+}
+
+.img_main_principal {
+  opacity: 20%;
+}
+
+/*IMG RELATIVE  */
+.row_img_main_principal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TEXTO COMPUTADORA */
+.text_route {
+  display: none;
+}
+
+.text_Computer_name {
+  display: none;
+}
+
+.text_Computer_name_part2 {
+  display: none;
+}
+
+.text_Computer_name_part3 {
+  display: none;
+}
+
+.img_main_principal {
+  width: 100%;
+  height: auto;
+}
+
+/* TEXTO CELULARES */
+.text_Cel {
+  position: absolute;
+  color: white;
+  text-align: center;
+}
+
+/* col_mision_main_principal */
+.col_mision_main_principal {
+  background-color: #1d8e96;
+  color: white;
+  text-align: justify;
+  padding: 2vw;
+}
+
+.col_vision_main_principal {
+  background-color: white;
+  color: black;
+  text-align: justify;
+  padding: 2vw;
+}
+
+.h2_mision,
+.h2_vision,
+.h2_valores {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* VALORES SECTION */
+.row_valores_main_principal {
+  color: white;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.h2_valores {
+  padding-top: 1vw;
+}
+
+.articule_ul_valores {
+  text-align: justify;
+}
+
+.li_console,
+.li_final {
+  list-style: none;
+}
+
+.ul_valores {
+  list-style-type: decimal;
+}
+
+/* .text_route2 {
+  display: none;
+} */
+
+@media (min-width: 1024px) {
+  .text_Cel {
+    display: none;
+  }
+
+  .row_img_main_principal {
+    color: white;
+  }
+
+  .row_img_main_principal {
+    align-items: start;
+  }
+
+  .text_route {
+    display: inline;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 6vw;
+    font-style: italic;
+    margin-bottom: 5vw;
+  }
+
+  .text_Computer_name {
+    background-color: #1d8e96;
+    color: white;
+    display: inline;
+    position: absolute;
+    width: auto;
+    text-align: center;
+    margin-top: 8vw;
+    padding: 0.5vw 3vw;
+    padding-bottom: 0;
+    margin-left: 38%;
+    border-radius: 5vw;
+  }
+
+  .h2_código {
+    font-size: 3.5vw;
+  }
+
+  .row_valores_main_principal {
+    text-align: justify;
+    line-height: 3vw;
+  }
+
+  .h2_valores {
+    padding-top: 2vw;
+  }
+
+  .col_mision_main_principal,
+  .col_vision_main_principal {
+    height: auto;
+    line-height: 2.5vw;
+  }
+}
+
+@media (min-width: 1490px) {
+  .text_Computer_name_part2 {
+    padding-top: 0;
+  }
+
+  .row_valores_main_principal {
+    line-height: 2vw;
+    font-size: 0.9vw;
+  }
+
+  .col_mision_main_principal,
+  .col_vision_main_principal {
+    padding-top: 6vw;
+    height: 30vw;
+    line-height: 2.5vw;
+    font-size: 0.9vw;
+  }
+}

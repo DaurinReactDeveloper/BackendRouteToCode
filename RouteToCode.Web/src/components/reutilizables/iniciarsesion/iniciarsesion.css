@@ -1,0 +1,182 @@
+/* ROW PRINCIPAL */
+.row_iniciarsesion {
+  background-color: white;
+  align-items: center;
+}
+
+/* TEXTO */
+.h1_mensaje_bienvenida_registro {
+  margin-bottom: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.h1_mensaje_bienvenida_registro,
+.p_subtitulo_registro {
+  text-align: center;
+  padding: 0vw;
+}
+
+.p_subtitulo_registro {
+  padding-bottom: 2vw;
+}
+
+/* COLUMNA DE LA IMAGEN */
+
+.col_img_iniciarsesion {
+  flex: auto;
+}
+
+/* DIV USER - PASSWORD*/
+.div_user_iniciarsesion,
+.div_password_iniciarsesion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  padding-bottom: 3vw;
+}
+
+.div_password_iniciarsesion {
+  padding-bottom: 3vw;
+}
+
+.div_cambiar_password {
+  display: flex;
+  justify-content: end;
+  padding-right: 5vw;
+}
+
+/* INPUTS PRINCIPAL */
+.input_user_iniciarsesion,
+.input_password_iniciarsesion {
+  all: unset;
+  width: 80%;
+  color: #333333;
+  border: none;
+  border-bottom: 0.5vw solid #1d8e96;
+}
+
+.input_password_iniciarsesion::placeholder,
+.input_user_iniciarsesion::placeholder {
+  color: #333333;
+  padding-left: 1vw;
+}
+
+/* BOTÓN INICIAR SESIÓN */
+.div_botón_iniciarsesion {
+  text-align: center;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+
+.botón_iniciarsesion_continuar {
+  border: none;
+  border-radius: 5vw;
+  padding: 0.5vw;
+  background-color: #333333;
+  color: white;
+  width: 70%;
+}
+
+/* DIV REGISTER */
+.div_iniciarsesion_register {
+  text-align: center;
+  padding-bottom: 10vw;
+}
+
+/* LINK REGISTER */
+.link_iniciarsesion_register {
+  color: #333333;
+  text-decoration-color: #1d8e96;
+}
+
+@media (min-width: 1024px) {
+  .col_img_iniciarsesion {
+    width: min-content;
+  }
+
+  .col_data_iniciarsesion {
+    width: max-content;
+  }
+
+  /* Subtitulo */
+  .p_subtitulo_registro {
+    font-size: 1vw;
+    padding-bottom: 1vw;
+  }
+
+  /* DIV USER - PASSWORD*/
+  .div_user_iniciarsesion,
+  .div_password_iniciarsesion {
+    gap: 0.2vw;
+    padding-bottom: 2vw;
+  }
+
+  .div_password_iniciarsesion {
+    padding-bottom: 1vw;
+  }
+
+  .div_cambiar_password {
+    padding-right: 5vw;
+  }
+
+  /* INPUTS PRINCIPAL */
+  .input_user_iniciarsesion,
+  .input_password_iniciarsesion {
+    border: none;
+    border-radius: 0.5vw;
+    background-color: #1d8e96;
+    color: white;
+    padding: 0.8vw;
+    width: 70%;
+    padding-left: 3vw;
+  }
+
+  .input_password_iniciarsesion::placeholder,
+  .input_user_iniciarsesion::placeholder {
+    color: white;
+    padding-left: 0vw;
+    padding-left: 0.2vw;
+  }
+
+  /* BOTÓN INICIAR SESIÓN */
+  .div_botón_iniciarsesion {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+  }
+
+  .botón_iniciarsesion_continuar {
+    width: 50%;
+  }
+
+  .botón_iniciarsesion_continuar:hover {
+    background-color: #1d8e96;
+  }
+
+  /* DIV REGISTER */
+  .div_iniciarsesion_register {
+    text-align: left;
+    padding-left: 5vw;
+  }
+
+  /* iconos - new */
+  .icon_iniciarsesion {
+    color: white;
+    position: absolute;
+    left: 57.1%;
+    pointer-events: none;
+    font-size: 1.5vw;
+  }
+
+  /* Columna data */
+  .col_data_iniciarsesion {
+    padding-top: 10vw;
+  }
+
+  .link_iniciarsesion_register {
+    font-weight: bold;
+  }
+}

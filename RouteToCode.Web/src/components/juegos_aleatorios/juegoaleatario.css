@@ -1,0 +1,55 @@
+.div_juegos {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2vw;
+  padding-bottom: 5vw;
+}
+
+.input_juegos {
+  background-color: #1d8e96;
+  border: none;
+  border: 0.1vw solid #333333;
+  color: white;
+  text-align: center;
+  border-radius: 1vw;
+  width: 94%;
+}
+
+.botón_juego {
+  border: none;
+  padding: 1vw 5vw;
+  border-radius: 1vw;
+  background-color: #333333;
+  color: white;
+  text-transform: capitalize;
+  width: 95%;
+}
+
+@media (min-width: 1024px) {
+  .div_juegos {
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vw;
+    padding-bottom: 2vw;
+  }
+
+  .input_juegos {
+    border: 0.1vw solid #333333;
+    border-radius: 2vw;
+    width: min-content;
+  }
+
+  .botón_juego {
+    padding: 0.2vw;
+    border-radius: 1vw;
+    width: 20%;
+  }
+
+  .botón_juego:hover {
+    background-color: chocolate;
+    color: white;
+  }
+}

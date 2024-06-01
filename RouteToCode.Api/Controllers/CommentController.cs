@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RouteToCode.Application.Contract;
 using RouteToCode.Application.Dtos.Comment;
 using RouteToCode.Infrastructure.Interfaces;
@@ -79,8 +80,8 @@ namespace RouteToCode.Api.Controllers
             return Ok(CommentUpdate);
         }
 
-
         // delete api/<commentcontroller>/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("Remove")]
         public ActionResult Delete([FromBody] CommentRemoveDto removeDto)
         {

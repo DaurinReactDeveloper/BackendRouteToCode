@@ -12,6 +12,7 @@ namespace RouteToCode.Application.Dtos.Comment
         public string? Content { get; set; }
         public DateTime? CreatedAdt { get; set; }
         public string? UserName { get; set; }
+        public int? UserId { get; set; }
         public string? Section { get; set; }
     }
 }

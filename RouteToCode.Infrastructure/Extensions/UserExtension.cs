@@ -16,7 +16,8 @@ namespace RouteToCode.Infrastructure.Extensions
                 Email = userDomain.Email,
                 Address = userDomain.Address,
                 Password = userDomain.Password,
-                UserId = userDomain.UserId
+                UserId = userDomain.UserId,
+                Rol  = userDomain.Rol,
             };
 
             return userModel;

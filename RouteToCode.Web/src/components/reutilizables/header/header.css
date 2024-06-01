@@ -1,0 +1,152 @@
+* {
+  font-family: "Anonymous Pro", monospace;
+}
+
+.navbar {
+  background-color: #1d8e96;
+  padding: 1vw;
+}
+
+.title_navbar {
+  color: white;
+  margin: 0;
+  font-size: 5vw;
+  font-weight: 400;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.nav-link {
+  color: white;
+}
+
+.button_menu {
+  color: white;
+}
+
+.button_sesión {
+  color: #1c1b1f;
+  background-color: white;
+  width: 100%;
+  padding: 0vw;
+  border: none;
+  /* prop display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
+  border-radius: 5vw;
+  text-decoration: none;
+}
+
+.person_icon {
+  font-size: 5vw;
+  padding-top: 0.5vw;
+}
+
+/* CANVAS */
+.offcanvas {
+  background-color: #1d8e96;
+  color: white;
+  font-family: "Inconsolata", monospace;
+  text-align: justify;
+}
+
+.link_canvas {
+  text-decoration: none;
+  color: white;
+}
+
+.p_part {
+  background-color: #1c1b1f;
+  padding: 0.2vw;
+  text-align: center;
+}
+
+.offcanvas-body > ul {
+  list-style-type: none;
+}
+
+@media (min-width: 1024px) {
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+
+  .title_navbar {
+    font-size: 1.5vw;
+    padding-right: 2vw;
+  }
+
+  .button_sesión {
+    text-align: center;
+    padding: 0.1vw;
+    padding-right: 0.6vw;
+    width: max-content;
+    /* prop display */
+    gap: 0.3vw;
+    border-radius: 1.5vw;
+    /* Prop Color */
+    background-color: #1c1b1f;
+    color: white;
+  }
+
+  .person_icon {
+    font-size: 2vw;
+    padding-top: 0vw;
+  }
+
+  .button_sesión:hover {
+    background-color: white;
+    color: #1c1b1f;
+  }
+
+  /* Link navbar */
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 0;
+    height: 1px;
+    background-color: #1c1b1f;
+    transition: width 1s ease-in-out;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:active {
+    color: white;
+  }
+
+  /* Links Ajustes */
+  .link_canvas {
+    position: relative;
+  }
+
+  .link_canvas::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 0;
+    height: 1px;
+    background-color: #1c1b1f;
+    transition: width 1s ease-in-out;
+  }
+
+  .link_canvas:hover::after {
+    width: 100%;
+  }
+}

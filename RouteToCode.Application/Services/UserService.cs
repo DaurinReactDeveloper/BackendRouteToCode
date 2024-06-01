@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using RouteToCode.Application.Contract;
 using RouteToCode.Application.Core;
 using RouteToCode.Application.Dtos.User;
+using RouteToCode.Application.Validations;
 using RouteToCode.Domain.Entities;
 using RouteToCode.Infrastructure.Interfaces;
-using RouteToCode.Infrastructure.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RouteToCode.Application.Services
 {
@@ -18,11 +18,13 @@ namespace RouteToCode.Application.Services
 
         private readonly IUserRepository userRepository;
         private readonly ILogger<UserService> logger;
+        private readonly IConfiguration _configuration;
 
-        public UserService(IUserRepository userRepository, ILogger<UserService> logger)
+        public UserService(IUserRepository userRepository, ILogger<UserService> logger, IConfiguration configuration)
         {
             this.userRepository = userRepository;
             this.logger = logger;
+            this._configuration = configuration;
         }
 
         public ServiceResult GetById(int id)
@@ -34,6 +36,14 @@ namespace RouteToCode.Application.Services
             {
 
                 var GetById = this.userRepository.GetUserById(id);
+
+                if (UserValidation.ValidationUserId(id) || GetById == null)
+                {
+                    result.Success = false;
+                    result.Message = "Usuario no encontrado";
+                    return result;
+                }
+
                 result.Data = GetById;
             }
 
@@ -54,14 +64,20 @@ namespace RouteToCode.Application.Services
 
             try
             {
-
                 var user = this.userRepository.GetUser(Name, Password);
-                result.Data = user;
+
+                if (user != null)
+                {
+                    result.Data = user;
+                    result.Success = true;
+                    return result;
+                }
+
+                result.Success = false;
 
             }
             catch (Exception ex)
             {
-
                 result.Success = false;
                 result.Message = "Ha Ocurrido un Error Obteniendo el Usuario";
                 this.logger.LogError($"Ha Ocurrido un error {ex.Message}", ex.ToString());
@@ -76,6 +92,15 @@ namespace RouteToCode.Application.Services
 
             try
             {
+
+                if (!UserValidation.ValidationUserRegister(ModelDto))
+                {
+
+                    result.Success = false;
+                    result.Message = "Los datos del usuario no cumplen con las validaciones";
+                    return result;
+                }
+
                 this.userRepository.Add(new User()
                 {
 
@@ -104,6 +129,12 @@ namespace RouteToCode.Application.Services
         {
             ServiceResult result = new ServiceResult();
 
+            if (!UserValidation.ValidationUserRegister(ModelDto))
+            {
+                result.Success = false;
+                result.Message = "Los datos del usuario no cumplen con las validaciones";
+                return result;
+            }
 
             try
             {
@@ -142,6 +173,14 @@ namespace RouteToCode.Application.Services
         {
             ServiceResult result = new ServiceResult();
 
+            if (UserValidation.ValidationUserId(ModelDto))
+            {
+                result.Success = false;
+                result.Message = "Los datos del usuario no cumplen con las validaciones";
+                return result;
+            }
+
+
             try
             {
                 var UserRemove = this.userRepository.GetById(ModelDto.UserId);
@@ -167,6 +206,29 @@ namespace RouteToCode.Application.Services
 
             return result;
         }
+
+        public string GenerateToken(string username, string role)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Role, role)
+        };
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
 
     }
 }

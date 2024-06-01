@@ -18,6 +18,8 @@ namespace RouteToCode.Infrastructure.Models
         public string? Address { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
+        public string? Rol { get; set; }
+
 
         public virtual ICollection<CommentModel> Comments { get; set; }
     }

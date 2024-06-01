@@ -1,0 +1,130 @@
+.main_register {
+  background-color: white;
+}
+
+.section_register_img {
+  display: contents;
+  width: 100%;
+}
+
+.h2_register {
+  font-weight: bold;
+  text-align: center;
+}
+
+.p_register {
+  text-align: center;
+}
+
+.div_input_register {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2vw;
+  padding-bottom: 3vw;
+}
+
+.input_register {
+  border: none;
+  padding: 1vw;
+  border: 0.1vw solid black;
+  border-radius: 1vw;
+  padding-left: 2vw;
+}
+
+.div_button_registrarse {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botón_registrarse {
+  width: 50%;
+  border: none;
+  border-radius: 1vw;
+  padding: 1vw;
+  margin-bottom: 5vw;
+  background-color: #1d8e96;
+  color: white;
+}
+
+.botón_registrarse:focus {
+  background-color: #333333;
+  color: white;
+}
+
+.mensaje_registro {
+  text-align: center;
+}
+
+.p_success_registro_correcto {
+  color: #333333;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.p_success_registro_incorrecto {
+  color: brown;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+  .section_inputs_register {
+    align-content: center;
+  }
+
+  .section_register_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .h2_register {
+    font-weight: bold;
+    text-align: center;
+    font-size: 3vw;
+    text-decoration: underline;
+    text-decoration-color: #1d8e96;
+  }
+
+  .div_input_register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 0.3vw;
+    padding-bottom: 1vw;
+    width: 100%;
+  }
+
+  .input_register {
+    border: none;
+    padding: 0.5vw;
+    border: 0.1vw solid black;
+    border-radius: 0.5vw;
+    padding-left: 1vw;
+    width: 80%;
+    margin-bottom: 0.3vw;
+  }
+
+  .div_button_registrarse {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .botón_registrarse {
+    width: 50%;
+    border-radius: 1vw;
+    padding: 0.5vw;
+    margin-bottom: 0vw;
+  }
+
+  .botón_registrarse:hover {
+    background-color: #333333;
+    color: white;
+  }
+}

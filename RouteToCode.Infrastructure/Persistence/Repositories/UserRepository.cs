@@ -27,32 +27,28 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
         }
 
         //Login
-        public UserModel GetUser(string Name, string Password)
+        public UserModel GetUser(string name, string password)
         {
-
-            UserModel user = new UserModel();
-
             try
             {
+                var user = (from us in this.dBBLOGContext.Users
+                            where us.Name == name && us.Password == password
+                            select new UserModel
+                            {
+                                Name = us.Name,
+                                Rol = us.Rol,
+                                UserId = us.UserId
+                                
+                            }).FirstOrDefault();
 
-                user = (from us in this.dBBLOGContext.Users
-                        where us.Name == Name &&
-                              us.Password == Password
-                        select new UserModel()
-                        {
-                            Name = us.Name,
-                            Password = us.Password,
-                        }
-
-                    ).FirstOrDefault();
-
+                return user;
             }
+
             catch (Exception ex)
             {
-                this.logger.LogError($"Ha Ocurrido un Error Obteniendo el Usuario",ex.ToString());
+                this.logger.LogError("Ha Ocurrido un Error Obteniendo el Usuario", ex);
+                return null;
             }
-
-            return user;
         }
 
         //GetID
@@ -141,6 +137,24 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
                 this.logger.LogError($"Ocurrió un error Eliminando el Usuario: {ex.Message}", ex.ToString());
             }
         }
+
+        //public bool GetUser(string name, string password)
+        //{
+        //    try
+        //    {
+        //        var usuario = (from us in this.dBBLOGContext.Users
+        //                       where us.Name == name && us.Password == password
+        //                       select us).FirstOrDefault();
+
+        //        // Retorna true si se encuentra un usuario, false en caso contrario
+        //        return usuario != null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.logger.LogError("Ha Ocurrido un Error Obteniendo el Usuario", ex);
+        //        return false; // Retorna false en caso de error
+        //    }
+        //}
 
     }
 }
