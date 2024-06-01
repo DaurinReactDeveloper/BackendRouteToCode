@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace RouteToCode.Infrastructure.Core
 {
-    //ABSTRACTA PORQUE NO SE VA A INSTANCIAR SOLO ES LA IMPLEMENTACION GENERAL DEL REPOSITORIO GENERAL
     public abstract class BaseRepository<Entity> : IBaseRepository<Entity> where Entity : class
     {
         private readonly DBBLOGContext DbContext;

@@ -13,16 +13,35 @@ export default function Comentarios({ section }) {
   const [administrador, setAdministrador] = useState(null);
   const [registrado, setRegistrado] = useState(null);
   const [contenido, setContenido] = useState("");
+  const [contenidoUpdate, setContenidoUpdate] = useState("");
   const [mensajeEnviado, setMensajeEnviado] = useState(false);
+  const [mensajeEnviadoUpdate, setMensajeEnviadoUpdate] = useState(false);
+  const [comentarioId, setComentarioId] = useState(null);
 
   useEffect(() => {
     GetComentarios();
     Registrado();
+    esAdministrador();
   }, [section]);
 
   function Registrado() {
     const token = localStorage.getItem("token");
     setRegistrado(!!token);
+  }
+
+  function esAdministrador() {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const decodeToken = jwtDecode(token);
+
+      if (
+        decodeToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "admin"
+      )
+        setAdministrador(true);
+    }
   }
 
   async function GetComentarios() {
@@ -44,26 +63,14 @@ export default function Comentarios({ section }) {
     }
   }
 
-  function esAdministrador() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodeToken = jwtDecode(token);
-      setAdministrador(
-        decodeToken[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "admin"
-      );
-    }
-  }
-
-  async function eliminarComentario(commentId) {
-    esAdministrador();
+  async function DeleteComentarios(commentId) {
     if (administrador) {
       try {
-        const token = localStorage.getItem("token");
+        const tokenDelete = localStorage.getItem("token");
+
         await axios.delete(`${urlComment}/Remove`, {
           data: { commentId },
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${tokenDelete}` },
         });
         GetComentarios();
       } catch (error) {
@@ -72,7 +79,7 @@ export default function Comentarios({ section }) {
     }
   }
 
-  async function addComentario() {
+  async function AddComentario() {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
@@ -100,10 +107,74 @@ export default function Comentarios({ section }) {
     }
   }
 
+  async function UpdateComentario() {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (token) {
+      const decodeToken = jwtDecode(token);
+      try {
+        const respuesta = await axios.put(`${urlComment}/Update`, {
+          commentId: comentarioId,
+          content: contenidoUpdate,
+          userName: decodeToken.sub,
+          userId: Number(userId),
+          section,
+        });
+
+        if (respuesta) {
+          setMensajeEnviadoUpdate(true);
+          GetComentarios();
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 10);
+        }
+      } catch (error) {
+        alert("HA OCURRIDO UN ERROR ACTUALIZANDO EL COMENTARIO");
+      }
+    }
+  }
+
+  function ValidarUsuario(idComentario) {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    const userIdNumber = Number(userId);
+
+    if (token) {
+      if (userIdNumber === idComentario) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  function AlmacenarComentarioId(idComentario) {
+    setComentarioId(idComentario);
+  }
+
   return (
     <section className="row row_comentarios">
       <hr className="hr_comentarios" />
       <h2 className="h2_comentarios">SECCIÓN DE COMENTARIOS</h2>
+
+      <div className="div_botón_agregar_comentario div_invitación_comentario">
+        <p className="p_comentario_comentarios">
+          <strong>
+            ¿Qué fue lo que más te gustó de esta sección? ¿Aprendiste algo
+            nuevo?
+          </strong>{" "}
+          Nos encantaría conocer tu experiencia. Comparte con nosotros tus
+          pensamientos y sugerencias sobre lo que te gustaría ver en esta
+          sección en el futuro.{" "}
+          <strong>
+            {" "}
+            ¡Tu opinión es muy valiosa para nosotros y nos ayuda a seguir
+            mejorando!
+          </strong>
+        </p>
+      </div>
 
       {registrado ? (
         <div className="div_botón_agregar_comentario">
@@ -131,7 +202,7 @@ export default function Comentarios({ section }) {
 
       <ModalAddComentario
         setContenido={setContenido}
-        addComentario={addComentario}
+        AddComentario={AddComentario}
         mensajeEnviado={mensajeEnviado}
       />
 
@@ -160,20 +231,31 @@ export default function Comentarios({ section }) {
                         <button
                           type="button"
                           className="botón_delete_comentario"
-                          onClick={() => eliminarComentario(comment.commentId)}
+                          onClick={() => DeleteComentarios(comment.commentId)}
                         >
                           <MdDelete />
                         </button>
                       )}
                     </div>
-                    {registrado && (
+                    {ValidarUsuario(comment.commentId) && (
                       <div className="md_edit_comentario">
                         <button
                           type="button"
                           className="botón_editar_comentario"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalUpdate"
+                          onClick={() =>
+                            AlmacenarComentarioId(comment.commentId)
+                          }
                         >
                           <CiEdit />
                         </button>
+
+                        <ModalUpdateComentario
+                          UpdateComentario={UpdateComentario}
+                          mensajeEnviadoUpdate={mensajeEnviadoUpdate}
+                          setContenidoUpdate={setContenidoUpdate}
+                        />
                       </div>
                     )}
                   </div>
@@ -187,7 +269,7 @@ export default function Comentarios({ section }) {
   );
 }
 
-function ModalAddComentario({ setContenido, addComentario, mensajeEnviado }) {
+function ModalAddComentario({ setContenido, AddComentario, mensajeEnviado }) {
   function extraerContenido(e) {
     const texto = e.target.value;
     setContenido(texto);
@@ -215,32 +297,102 @@ function ModalAddComentario({ setContenido, addComentario, mensajeEnviado }) {
             ></button>
           </div>
           <div className="modal-body">
-            <label>
-              <p>Comentario</p>
-
+            <div>
               {!mensajeEnviado ? (
                 <textarea
                   placeholder="Añade tu Comentario Aquí"
-                  required
                   onChange={extraerContenido}
-                ></textarea>
+                  className="text_area_agregar"
+                  required
+                  maxLength={79}
+                  minLength={10}
+                />
               ) : (
-                <p>COMENTARIO AGREGADO - DELE A SALIR</p>
+                <p>COMENTARIO AGREGADO - ¿PUEDE OBSERVARLO?</p>
               )}
-            </label>
+            </div>
           </div>
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="botón_cerrar_modal"
               data-bs-dismiss="modal"
             >
               Cerrar
             </button>
             <button
               type="button"
-              className="btn btn-primary"
-              onClick={addComentario}
+              className="botón_agregar_modal"
+              onClick={AddComentario}
+            >
+              Confirmar Comentario
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ModalUpdateComentario({
+  setContenidoUpdate,
+  UpdateComentario,
+  mensajeEnviadoUpdate,
+}) {
+  function extraerContenido(e) {
+    const texto = e.target.value;
+    setContenidoUpdate(texto);
+  }
+
+  return (
+    <div
+      className="modal fade"
+      id="exampleModalUpdate"
+      tabIndex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h1 className="modal-title fs-5" id="exampleModalLabel">
+              AGREGAR COMENTARIO
+            </h1>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">
+            <div>
+              {!mensajeEnviadoUpdate ? (
+                <textarea
+                  placeholder="Añade tu Comentario Aquí"
+                  onChange={extraerContenido}
+                  className="text_area_agregar"
+                  required
+                  maxLength={79}
+                  minLength={10}
+                />
+              ) : (
+                <p>COMENTARIO ACTUALIZADO </p>
+              )}
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="botón_cerrar_modal"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              className="botón_agregar_modal"
+              onClick={UpdateComentario}
             >
               Confirmar Comentario
             </button>

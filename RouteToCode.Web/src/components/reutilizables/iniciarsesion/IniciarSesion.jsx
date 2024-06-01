@@ -125,7 +125,11 @@ export default function IniciarSesión() {
                 </Link>
               </div>
 
-              {mensaje ? <p>{mensaje}</p> : <p>{mensaje}</p>}
+              {mensaje ? (
+                <p className="p_mensaje_iniciar_sesión">{mensaje}</p>
+              ) : (
+                <p className="p_mensaje_iniciar_sesión">{mensaje}</p>
+              )}
 
               <div className="div_botón_iniciarsesion">
                 <button

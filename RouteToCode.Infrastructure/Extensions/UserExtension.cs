@@ -5,8 +5,6 @@ namespace RouteToCode.Infrastructure.Extensions
 {
     public static class UserExtension
     {
-        //Los Metodos Deben ser Verbos
-
         public static UserModel UserModelConverter(this User userDomain)
         {
 

@@ -19,7 +19,7 @@ export function Header() {
 
   function cerrarSesión() {
     localStorage.removeItem("token");
-    navigation("/Inicio");
+    navigation("/");
   }
 
   return (
@@ -43,7 +43,7 @@ export function Header() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {/* HOME */}
               <li className="nav-item">
-                <Link className="nav-link" to={"/inicio"}>
+                <Link className="nav-link" to={"/Inicio"}>
                   {Home}
                 </Link>
               </li>

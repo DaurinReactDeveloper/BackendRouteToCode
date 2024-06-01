@@ -11,10 +11,7 @@ namespace RouteToCode.Infrastructure.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        //Login
-        UserModel GetUser(string Name,string Password);
-        //bool GetUser(string Name, string Password);
-
+        UserModel GetUser(string Name, string Password);
         UserModel GetUserById(int Id);
     }
 }

@@ -1,5 +1,5 @@
 import App from "../App.jsx";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Modulo1 } from "../components/csharp/modulo1/Modulo1.jsx";
 import { Modulo2 } from "../components/csharp/modulo2/Modulo2.jsx";
 import { Modulo3 } from "../components/csharp/modulo3/Modulo3.jsx";
@@ -17,7 +17,7 @@ const token = localStorage.getItem("token");
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: token ? <App /> : <IniciarSesión />,
+    element: token ? <Navigate to="/Inicio" /> : <IniciarSesión />,
     errorElement: "Ha Ocurrido un error",
   },
   {
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: token ? <App /> : <Register />,
+    element: token ? <Navigate to="/Inicio" /> : <Register />,
     errorElement: "Ha Ocurrido un error",
   },
 ]);

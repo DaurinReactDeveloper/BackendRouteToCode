@@ -98,6 +98,12 @@
   opacity: 1;
 }
 
+.div_invitación_comentario {
+  text-align: justify;
+  margin-bottom: 0vw;
+  padding-bottom: 0vw;
+}
+
 @media (min-width: 1020px) {
   .row_comentarios {
     margin-top: 2vw !important;
@@ -197,5 +203,54 @@
   .div_botón_agregar_comentario {
     padding-left: 15vw;
     padding-right: 15vw;
+  }
+
+  /* TEXT AREA */
+
+  .text_area_agregar {
+    resize: none;
+    border: 0.1vw solid #1d8e96;
+    border-radius: 0.3vw;
+    padding: 1vw;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Botones Modal */
+  .botón_cerrar_modal {
+    border: none;
+    border-radius: 0.5vw;
+    background-color: #1c1b1f;
+    padding: 0.3vw 2vw;
+    color: white;
+  }
+
+  .botón_cerrar_modal:hover {
+    background-color: #961d1d;
+  }
+
+  .botón_agregar_modal:hover {
+    background-color: teal;
+  }
+
+  .botón_agregar_modal {
+    border: none;
+    background-color: #1d8e96;
+    border-radius: 0.5vw;
+    padding: 0.3vw 2vw;
+    color: white;
+  }
+
+  .modal-content {
+    background-color: white;
+    border-radius: 1vw;
+  }
+
+  .div_invitación_comentario {
+    line-height: 2vw;
+  }
+
+  .p_comentario_comentarios {
+    margin-bottom: 0vw !important;
   }
 }

@@ -4,13 +4,12 @@ using RouteToCode.Application.Core;
 using RouteToCode.Application.Dtos.Comment;
 using RouteToCode.Infrastructure.Interfaces;
 using RouteToCode.Domain.Entities;
+using RouteToCode.Application.Validations;
 
 namespace RouteToCode.Application.Services
 {
     public class CommentService : ICommentServices
     {
-        //Inyeccion de Dependencias del Repositorio y el Illoger
-
         private readonly ICommentRepository commentRepository;
         private readonly ILogger<CommentService> logger;
 
@@ -26,6 +25,16 @@ namespace RouteToCode.Application.Services
 
             try
             {
+
+                if (Section == null)
+                {
+
+                    result.Success = false;
+                    result.Message = "Error obteniendo la seccion";
+                    return result;
+
+                }
+
                 var comment = this.commentRepository.GetSectionComment(Section);
                 result.Data = comment;
             }
@@ -65,6 +74,15 @@ namespace RouteToCode.Application.Services
 
             try
             {
+                if (!CommentValidations.ValidationsComment(ModelDto))
+                {
+
+                    result.Success = false;
+                    result.Message = "Los datos del comentario no cumplen con las validaciones";
+                    return result;
+
+                }
+
                 this.commentRepository.Add(new Comment()
                 {
                     Content = ModelDto.Content,
@@ -74,6 +92,7 @@ namespace RouteToCode.Application.Services
                 });
 
                 result.Message = "Comentario Agregado Correctamente";
+
             }
             catch (Exception ex)
             {
@@ -91,6 +110,16 @@ namespace RouteToCode.Application.Services
 
             try
             {
+
+                if (!CommentValidations.ValidationsComment(ModelDto))
+                {
+
+                    result.Success = false;
+                    result.Message = "Los datos del comentario no cumplen con las validaciones";
+                    return result;
+
+                }
+
                 var CommentRemove = this.commentRepository.GetById(ModelDto.CommentId);
 
                 if (CommentRemove is null)
@@ -122,6 +151,15 @@ namespace RouteToCode.Application.Services
             try
             {
 
+                if (!CommentValidations.ValidationsComment(ModelDto))
+                {
+
+                    result.Success = false;
+                    result.Message = "Los datos del comentario no cumplen con las validaciones";
+                    return result;
+
+                }
+
                 var CommentUpdate = this.commentRepository.GetById(ModelDto.CommentId);
 
                 if (CommentUpdate is null)
@@ -134,6 +172,7 @@ namespace RouteToCode.Application.Services
                 CommentUpdate.Content = ModelDto.Content;
                 CommentUpdate.Section = ModelDto.Section;
                 CommentUpdate.UserName = ModelDto.UserName;
+                CommentUpdate.UserId = ModelDto.UserId;
 
                 this.commentRepository.SaveChanged();
 

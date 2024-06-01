@@ -26,7 +26,6 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
             this.dBBLOGContext = DbContext;
         }
 
-        //Login
         public UserModel GetUser(string name, string password)
         {
             try
@@ -51,7 +50,6 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
             }
         }
 
-        //GetID
         public UserModel GetUserById(int Id)
         {
 
@@ -73,14 +71,12 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
 
         }
 
-        //Add
         public override void Add(User entety)
         {
             base.Add(entety);
             SaveChanged();
         }
 
-        //Update
         public override void Update(User entety)
         {
 
@@ -91,7 +87,6 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
 
                 if (user is null)
                 {
-
                     throw new UserExceptions("Ha Ocurrido Un Error Obteniendo el id del Usuario");
                 }
 
@@ -114,7 +109,6 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
 
         }
 
-        //Remove
         public override void Remove(User entety)
         {
             try
@@ -137,24 +131,6 @@ namespace RouteToCode.Infrastructure.Persistence.Repositories
                 this.logger.LogError($"Ocurrió un error Eliminando el Usuario: {ex.Message}", ex.ToString());
             }
         }
-
-        //public bool GetUser(string name, string password)
-        //{
-        //    try
-        //    {
-        //        var usuario = (from us in this.dBBLOGContext.Users
-        //                       where us.Name == name && us.Password == password
-        //                       select us).FirstOrDefault();
-
-        //        // Retorna true si se encuentra un usuario, false en caso contrario
-        //        return usuario != null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.logger.LogError("Ha Ocurrido un Error Obteniendo el Usuario", ex);
-        //        return false; // Retorna false en caso de error
-        //    }
-        //}
 
     }
 }
