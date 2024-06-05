@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace RouteToCode.Domain.Entities
 {
     public partial class DBBLOGContext : DbContext
     {
+        private readonly IConfiguration _configuration;
+
         public DBBLOGContext()
         {
         }
 
-        public DBBLOGContext(DbContextOptions<DBBLOGContext> options)
+        public DBBLOGContext(DbContextOptions<DBBLOGContext> options, IConfiguration configuration)
             : base(options)
         {
+            _configuration = configuration;
         }
 
         public virtual DbSet<Comment> Comments { get; set; } = null!;
@@ -20,8 +24,8 @@ namespace RouteToCode.Domain.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DAURIN16\\SQLEXPRESS; DataBase=DBBLOG; Integrated Security=true");
+                var connectionString = _configuration.GetConnectionString("DBBLOGContext");
+                optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 23)));
             }
         }
 
@@ -35,7 +39,7 @@ namespace RouteToCode.Domain.Entities
 
                 entity.Property(e => e.CreatedAdt)
                     .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.UserName)
                     .HasMaxLength(12)
@@ -44,7 +48,7 @@ namespace RouteToCode.Domain.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Comments__UserId__398D8EEE");
+                    .HasConstraintName("FK_Comments_UserId");
             });
 
             modelBuilder.Entity<User>(entity =>
