@@ -14,7 +14,6 @@ namespace RouteToCode.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -23,29 +22,33 @@ namespace RouteToCode.Api
             builder.Services.AddCommentDependency();
             builder.Services.AddUserDependency();
 
-            // Registro de dependencia base de de datos
+            // Registro de dependencia base de datos
             builder.Services.AddDbContext<DBBLOGContext>(options =>
-            options.UseMySql(builder.Configuration.GetConnectionString("DBBLOGContext"), new MySqlServerVersion(new Version(8, 0, 23))));
+                options.UseMySql(builder.Configuration.GetConnectionString("DBBLOGContext"), new MySqlServerVersion(new Version(8, 0, 23))));
 
-            // Configurar Core para hacer las Peticiones desde ReactJs
-            var proveedor = builder.Services.BuildServiceProvider();
-            var configuration = proveedor.GetRequiredService<IConfiguration>();
+            // Configurar CORS para hacer las peticiones desde el frontend
+            var frontendUrl = builder.Configuration.GetValue<string>("FrontendUrl");
+
+            if (string.IsNullOrEmpty(frontendUrl))
+            {
+                throw new ArgumentNullException("FrontendUrl", "El valor de FrontendUrl no puede ser nulo o vacío.");
+            }
 
             builder.Services.AddCors(options =>
             {
-                var FrontendUrl = configuration.GetValue<string>("FrontendUrl");
-
-                // Politics para poder utilizar los métodos básicos (AllowAnyMethod)
-                options.AddDefaultPolicy(builder =>
+                options.AddDefaultPolicy(policy =>
                 {
-                    builder.WithOrigins(FrontendUrl).AllowAnyMethod().AllowAnyHeader();
+                    policy.WithOrigins(frontendUrl)
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
                 });
             });
 
-            // Configuracion del Json Web Token
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
+            // Configuración del Json Web Token
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-                option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
@@ -64,6 +67,16 @@ namespace RouteToCode.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+            else
+            {
+                // Habilita Swagger para producción si es necesario
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.RoutePrefix = string.Empty;  // hace que Swagger UI esté disponible en la raíz
+                });
             }
 
             app.UseHttpsRedirection();

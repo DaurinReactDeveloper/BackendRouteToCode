@@ -111,7 +111,7 @@ namespace RouteToCode.Application.Services
             try
             {
 
-                if (!CommentValidations.ValidationsComment(ModelDto))
+                if (ModelDto.CommentId <= 0)
                 {
 
                     result.Success = false;
