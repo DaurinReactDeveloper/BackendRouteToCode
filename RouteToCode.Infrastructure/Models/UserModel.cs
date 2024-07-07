@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace RouteToCode.Domain.Entities
+namespace RouteToCode.Infrastructure.Models
 {
-    public partial class User
+    public class UserModel
     {
-        public User()
+        public UserModel()
         {
-            Comments = new HashSet<Comment>();
+            Comments = new HashSet<CommentModel>();
         }
 
         public int UserId { get; set; }
@@ -18,6 +21,6 @@ namespace RouteToCode.Domain.Entities
         public string? Rol { get; set; }
 
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<CommentModel> Comments { get; set; }
     }
 }

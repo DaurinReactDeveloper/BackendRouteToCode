@@ -8,6 +8,8 @@ namespace RouteToCode.Domain.Repository
 {
     public interface IBaseRepository<Entety> where Entety : class
     {
+        List<Entety> GetEntities();
+        Entety GetById(int id);
         void Add(Entety entety);
         void Remove(Entety entety);
         void Update(Entety entety);
