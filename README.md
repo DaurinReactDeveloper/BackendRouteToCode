@@ -1,4 +1,4 @@
-<img src=''></img>
+<img src='https://i.imgur.com/IcDEw8t.png'></img>
 
 <h1>🌐 Descubre Route to Code: La Senda del Código</h1>
 
