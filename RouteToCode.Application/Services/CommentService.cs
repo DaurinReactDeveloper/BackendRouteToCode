@@ -174,6 +174,7 @@ namespace RouteToCode.Application.Services
                 CommentUpdate.UserName = ModelDto.UserName;
                 CommentUpdate.UserId = ModelDto.UserId;
 
+                this.commentRepository.Update(CommentUpdate);
                 this.commentRepository.SaveChanged();
 
                 result.Message = "Comentario actualizado correctamente.";

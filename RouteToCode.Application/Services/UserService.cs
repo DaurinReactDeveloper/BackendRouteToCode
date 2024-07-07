@@ -138,20 +138,21 @@ namespace RouteToCode.Application.Services
 
             try
             {
-                var user = this.userRepository.GetById(ModelDto.UserId);
+                var userUpdate = this.userRepository.GetById(ModelDto.UserId);
 
-                if (user is null)
+                if (userUpdate is null)
                 {
                     result.Success = false;
                     result.Message = "Error Obteniendo el IdComment del Comentario";
                     return result;
                 }
 
-                user.Name = ModelDto.Name;
-                user.Password = ModelDto.Password;
-                user.Address = ModelDto.Address;
-                user.Email = ModelDto.Email;
+                userUpdate.Name = ModelDto.Name;
+                userUpdate.Password = ModelDto.Password;
+                userUpdate.Address = ModelDto.Address;
+                userUpdate.Email = ModelDto.Email;
 
+                this.userRepository.Update(userUpdate);
                 this.userRepository.SaveChanged();
 
                 result.Message = "Usuario actualizado correctamente.";
