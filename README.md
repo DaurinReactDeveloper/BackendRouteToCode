@@ -1,18 +1,16 @@
-<img src='https://i.imgur.com/IcDEw8t.png'></img>
+<img src='https://i.imgur.com/IcDEw8t.png' alt="Route to Code Image"/>
 
 <h1>🌐 Descubre Route to Code: La Senda del Código</h1>
 
-<h2>Descripcion del Proyecto(Backend)</h2>
+<h2>Descripción del Proyecto (Frontend)</h2>
 
-<p>Desarrollado con ASP.NET Core .NET 6 y utilizando arquitectura limpia, el backend de Route to Code garantiza un rendimiento robusto y escalable. Los roles de administrador y usuario están protegidos mediante JSON Web Tokens, asegurando una gestión de acceso segura y eficiente.</p>
+<p>El frontend de Route to Code ha sido desarrollado utilizando React.js y Bootstrap. Esta interfaz ofrece una experiencia de usuario dinámica y responsiva. La aplicación permite a los usuarios interactuar de manera fluida, con un diseño moderno y accesible. Utiliza componentes reutilizables y gestionados mediante el estado de React, lo que permite una alta escalabilidad y mantenimiento eficiente.</p>
 
-<h2>Tecnologias Utilizadas</h2>
+<h2>Tecnologías Utilizadas</h2>
 <ul>
-    <li>ASP.NET Core con .Net 6</li>
-    <li>Arquitectura Limpia</li>
-    <li>JSON Web Tokens</li>
+    <li>React.js</li>
+    <li>Bootstrap</li>
 </ul>
 
-<h2>Alojamiento de la pagina</h2>
-<p><a href="https://routetocode.netlify.app/"> IR A ROUTE TO CODE</a></p>
-
+<h2>Alojamiento de la Página</h2>
+<p><a href="https://routetocode.netlify.app/">IR A ROUTE TO CODE</a></p>
